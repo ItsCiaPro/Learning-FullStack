@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Site</title>
    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-   
+
+   <div class="forms-container flex-row">
+      <div class="form-box center" >
+         <form action="" class="flex-column center active" id="login-form">
+            <h2>Login</h2>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button class="form-submit" id="login-submit">
+               <label for="login-submit">Log in</label>
+            </button>
+            <p>Dont't have an account? <a href="#">Register</a></p>
+         </form>
+
+         <form action="" class="flex-column center" id="register-form">
+            <h2>Register</h2>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="account-type" id="">
+               <option value="">Account Type</option>
+               <option value="">User</option>
+               <option value="">Admin</option>
+            </select>
+            <button class="form-submit" id="login-submit">
+               <label for="login-submit">Log in</label>
+            </button>
+         </form>
+      </div>
+   </div>
+
 </body>
+
+
+
 </html>
