@@ -13,13 +13,13 @@
 
    <div class="forms-container flex-row" id="forms-container">
       <div class="form-box center slide-left" id="form-box">
-         <form action="" class="flex-column center active" id="login-form">
+         <form action="login_register.php" method="post" class="flex-column center active" id="login-form">
             <h2>Login</h2>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button class="form-submit" id="login-submit">
                <label for="login-submit">Log in</label>
-            </button>
+            </button type="submit" name="login" class="form-submit" id="login-submit">
             <p>Dont't have an account? <a href="#" onclick="switchForm('register-form')">Register</a></p>
          </form>
 
@@ -33,7 +33,7 @@
                <option value="">User</option>
                <option value="">Admin</option>
             </select>
-            <button class="form-submit" id="register-submit">
+            <button type="submit" name="register" class="form-submit" id="register-submit">
                <label for="login-submit">Register</label>
             </button>
             <p>Already have an account? <a href="#" onclick="switchForm('login-form')">Login</a></p>
