@@ -58,6 +58,7 @@ body {
    min-height: 100vh;
    
    background-image: url(./assets/imgs/background.png);
+   backdrop-filter: brightness(70%);
    background-position: center;
    background-size: cover;
    background-repeat: no-repeat;
@@ -65,11 +66,14 @@ body {
 
 
 .forms-container {
-   
    width: 120rem;
-   height: 60vh;
+   height: 70vh;
+   box-sizing: content-box;
+   padding: 1rem;
 
-   background-color: gray;
+   background-color: rgba(24, 24, 26, 0.886);
+   backdrop-filter: blur(0.3rem);
+   box-shadow: 0 0 20px black;
    border-radius: 2rem;
 }
 
@@ -78,7 +82,39 @@ body {
    height: 100%;
 
    border-radius: 2rem;
-   background-color: red;
+   background-color: #2596be; 
+
+   transition: background-color 0.2s ease-in-out;
+}
+
+.slide-right {
+   animation: slide-right 0.5s ease-in-out forwards;
+   background-color: #2596be;
+}
+
+.slide-left {
+   animation: slide-left 0.5s ease-in-out forwards;
+   background-color: #a53e2f;
+}
+
+@keyframes slide-right {
+   0% {
+      transform: translateX(0%);
+   }
+
+   100% {
+      transform: translateX(100%);
+   }
+}
+
+@keyframes slide-left {
+   0% {
+      transform: translateX(100%);
+   }
+
+   100% {
+      transform: translateX(0%);
+   } 
 }
 
 .form-box form.active {
@@ -100,6 +136,7 @@ body {
 
    input, select {
       border-color: rgba(0, 0, 0, 0.453);
+      background-color: white;
       border-style: solid;
       border-radius: 1rem;
       width: 60%;
@@ -108,6 +145,7 @@ body {
    }
 
    button {
+      cursor: pointer;
       padding: 1rem 8rem;
       border-radius: 1rem;
       border: none;

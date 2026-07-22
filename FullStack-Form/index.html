@@ -6,12 +6,13 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Site</title>
    <link rel="stylesheet" href="style.css">
+   <script src="script.js" defer></script>
 </head>
 
 <body>
 
-   <div class="forms-container flex-row">
-      <div class="form-box center" >
+   <div class="forms-container flex-row" id="forms-container">
+      <div class="form-box center slide-left" id="form-box">
          <form action="" class="flex-column center active" id="login-form">
             <h2>Login</h2>
             <input type="email" name="email" placeholder="Email" required>
@@ -19,7 +20,7 @@
             <button class="form-submit" id="login-submit">
                <label for="login-submit">Log in</label>
             </button>
-            <p>Dont't have an account? <a href="#">Register</a></p>
+            <p>Dont't have an account? <a href="#" onclick="switchForm('register-form')">Register</a></p>
          </form>
 
          <form action="" class="flex-column center" id="register-form">
@@ -32,9 +33,10 @@
                <option value="">User</option>
                <option value="">Admin</option>
             </select>
-            <button class="form-submit" id="login-submit">
-               <label for="login-submit">Log in</label>
+            <button class="form-submit" id="register-submit">
+               <label for="login-submit">Register</label>
             </button>
+            <p>Already have an account? <a href="#" onclick="switchForm('login-form')">Login</a></p>
          </form>
       </div>
    </div>
