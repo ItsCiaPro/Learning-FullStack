@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Site</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   <link rel="stylesheet" href="/style.css">
+   <script src="/script.js" defer></script>
+</head>
+
+<body>
+   <div class="forms-container flex-row" id="forms-container">
+      <div class="form-box center slide-left" id="form-box">
+         <form action="/auth/login" method="post" class="flex-column center active" id="login-form">
+            <h2>Login</h2>
+
+            {{#if error_msg}}
+               <h4 class="alert-message">{{error_msg}}</h4>
+            {{/if}}
+
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button class="form-submit" id="login-submit">
+               <label for="login-submit">Log in</label>
+            </button type="submit" class="form-submit" id="login-submit">
+            <p>Dont't have an account? <a href="#" onclick="switchForm('register-form')">Register</a></p>
+         </form>
+
+         <form action="/auth/register" method="post" class="flex-column center" id="register-form">
+            <h2>Register</h2>
+
+            {{#if error_msg}}
+               {{#unless (and error_msg "password_incorrect")}}
+                  <h4 class="alert-message">{{error_msg}}</h4>
+               {{/unless}}
+            {{/if}}
+
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+            <select name="account-type" id="">
+               <option value="user">User</option>
+               <option value="admin">Admin</option>
+            </select>
+            <button type="submit" class="form-submit" id="register-submit">
+               <label for="register-submit">Register</label>
+            </button>
+            <p>Already have an account? <a href="#" onclick="switchForm('login-form')">Login</a></p>
+         </form>
+      </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+      </script>
+</body>
+
+</html>

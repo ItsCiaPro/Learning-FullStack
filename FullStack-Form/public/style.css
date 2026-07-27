@@ -2,6 +2,9 @@
 
 :root {
    font-size: 10px;
+   interpolate-size: allow-keywords;
+
+   --bg-color: rgba(24, 24, 26, 0.886);
 }
 
 * {
@@ -53,6 +56,7 @@
 
 body {
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
    min-height: 100vh;
@@ -64,17 +68,58 @@ body {
    background-repeat: no-repeat;
 }
 
+body.main-body {
+}
+
+.main-body main {
+   display: flex;
+   box-sizing: border-box;
+   margin: 1rem;
+   flex: 1;
+   width: 99%;
+   height: 100%;
+   background-color: var(--bg-color);
+   border-radius: 2rem;
+}
+
+header {
+   display: flex;
+   position: sticky;
+   justify-self: start;
+
+   width: 100%;
+   height: auto;
+   padding: 2rem;
+   top: 0;
+
+   background-color: rgb(16, 16, 19);
+   
+   z-index: 99;
+   
+   h1 a {
+      text-decoration: none;
+      color: white;
+   }
+}
+
+.alert-message {
+   font-size: 2rem;
+   color: black;
+   margin: 0;
+}
 
 .forms-container {
-   width: 120rem;
-   height: 70vh;
+   width: min(95%, 120rem);
+   height: auto;
    box-sizing: content-box;
    padding: 1rem;
 
-   background-color: rgba(24, 24, 26, 0.886);
+   background-color: var(--bg-color);
    backdrop-filter: blur(0.3rem);
    box-shadow: 0 0 20px black;
    border-radius: 2rem;
+
+   transition: height 0.2s ease-in-out;
 }
 
 .form-box {
@@ -85,6 +130,7 @@ body {
    background-color: #2596be; 
 
    transition: background-color 0.2s ease-in-out;
+   transition: height 0.2s ease-in-out;
 }
 
 .slide-right {
@@ -123,13 +169,13 @@ body {
 
 .form-box form {
    display: none;
-   height: 100%;
+   height: fit-content;
    justify-content: start;
    padding: 4rem;
    gap: 2rem;
 
    h2 {
-      font-size: 8rem;
+      font-size: clamp(5rem, 10vw,8rem);
       color: white;
       margin-bottom: 2rem;
    }
@@ -139,14 +185,15 @@ body {
       background-color: white;
       border-style: solid;
       border-radius: 1rem;
-      width: 60%;
-      padding: 2rem 0;
+      width: min(90%, 40rem);
+      padding: clamp(1rem, 20%, 2rem) 0;
       padding-left: 1rem;
    }
 
    button {
       cursor: pointer;
-      padding: 1rem 8rem;
+      width: max(15rem, 50%);
+      height: 5rem;
       border-radius: 1rem;
       border: none;
       background-color: white;
@@ -154,6 +201,7 @@ body {
    }
 
    button label{
+      width: 100%;
       font-size: 2rem;
       font-weight: 600;
    }
@@ -173,5 +221,80 @@ body {
 
    p a:hover {
       text-decoration: underline;
+   }
+}
+
+@media(max-width: 700px) {
+   .forms-container {
+      width: 80%;
+   }
+
+   .form-box {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .form-box form{
+      input, select {
+         width: 99.9%;
+      } 
+   }
+
+   .slide-left {
+      animation: none;
+   }
+
+   .slide-right {
+      animation: none;
+   }
+}
+
+@media(max-width: 600px) {
+   .forms-container {
+      width: 90%;
+   }
+
+   .form-box {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .form-box form{
+      input, select {
+         width: 99.9%;
+      } 
+   }
+
+   .slide-left {
+      animation: none;
+   }
+
+   .slide-right {
+      animation: none;
+   }
+}
+
+@media(max-width: 500px) {
+   .forms-container {
+      width: 98%;
+   }
+
+   .form-box {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .form-box form{
+      input, select {
+         width: 99.9%;
+      } 
+   }
+
+   .slide-left {
+      animation: none;
+   }
+
+   .slide-right {
+      animation: none;
    }
 }
