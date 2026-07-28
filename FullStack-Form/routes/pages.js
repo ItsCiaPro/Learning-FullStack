@@ -25,6 +25,10 @@ router.get('/', (req, res) => {
       errorMessage = 'Database Error';
    }
 
+   else if (errorType === 'username_exists') {
+      errorMessage = 'Username already exists'
+   }
+
    res.render('index', { error_msg: errorMessage });
 });
 

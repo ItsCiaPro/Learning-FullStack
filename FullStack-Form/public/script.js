@@ -9,9 +9,14 @@ function switchForm(formId) {
    if (formsContainer.classList.contains('slide-left')) {
       formsContainer.classList.remove('slide-left');
       formsContainer.classList.add('slide-right')
-
-   } else if (formsContainer.classList.contains('slide-right')) {
+   } 
+   
+   else if (formsContainer.classList.contains('slide-right')) {
       formsContainer.classList.remove('slide-right');
       formsContainer.classList.add('slide-left')
    } 
+   
+   else if (!formsContainer.classList.contains('slide-right') && !formsContainer.classList.contains('slide-left')) {
+      formsContainer.classList.add('slide-right')
+   }
 }
