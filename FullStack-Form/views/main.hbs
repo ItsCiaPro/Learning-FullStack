@@ -15,13 +15,17 @@
    {{> header}}
 
    <main>
-      <section>
+      <section class="flex-column">
          {{#if isOwner}}
-         <h1>Welcome Owner of Page</h1>
+
+         <h1>Your Page</h1>
+
          {{/if}}
-         <h1>{{username}}</h1>
-         <h2>{{email}}</h2>
-         <h2>{{user_type}}</h2>
+         <div class="user-info-container flex-column center">
+            <h1>{{username}}</h1>
+            <h2>{{email}}</h2>
+            <h2>{{user_type}}</h2>
+         </div>
       </section>
    </main>
 </body>

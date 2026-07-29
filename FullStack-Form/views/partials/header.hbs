@@ -2,7 +2,11 @@
    <h1><a href="/">Home</a></h1>
 
    {{#if isAuthenticated}}
-   <a href="/auth/logout"><button class="logout-btn">Log Out</button></a>
+   <div class="auth-section container flex-row center">
+      <p>{{user.email}}</p>
+      <a href="/auth/logout"><button class="logout-btn">Log Out</button></a>
+   </div>
+
    {{/if}}
 
    {{#unless isAuthenticated}}
