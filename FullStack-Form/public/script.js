@@ -1,5 +1,3 @@
-const express = require('express');
-
 let formsContainer = document.getElementById('form-box')
 
 function switchForm(formId) {
