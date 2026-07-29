@@ -1,8 +1,16 @@
 const express = require("express");
+const { requireAuth, checkUser } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
+   //Checks if user is already authenticated
+   if ('isAuthenticated' in res.locals) {
+      if (res.locals.isAuthenticated === true) {
+         return res.redirect(`/home/${res.locals.user.name}`);
+      }
+   }
+
    const errorType = req.query.error;
    let errorMessage = null;
 
@@ -27,6 +35,10 @@ router.get('/', (req, res) => {
 
    else if (errorType === 'username_exists') {
       errorMessage = 'Username already exists'
+   }
+
+   else if (errorType === 'pass_or_email_incorrect') {
+      errorMessage = 'Email or password incorrect'
    }
 
    res.render('index', { error_msg: errorMessage });

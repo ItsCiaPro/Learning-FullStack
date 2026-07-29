@@ -1,3 +1,11 @@
 <header>
    <h1><a href="/">Home</a></h1>
+
+   {{#if isAuthenticated}}
+   <a href="/auth/logout"><button class="logout-btn">Log Out</button></a>
+   {{/if}}
+
+   {{#unless isAuthenticated}}
+   <a href="/"><button class="logout-btn">Sign In</button></a>
+   {{/unless}}
 </header>

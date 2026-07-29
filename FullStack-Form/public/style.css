@@ -101,6 +101,8 @@ header {
    position: sticky;
    justify-self: start;
 
+   justify-content: space-between;
+
    width: 100%;
    height: auto;
    padding: 2rem;
@@ -113,6 +115,18 @@ header {
    h1 a {
       text-decoration: none;
       color: white;
+   }
+
+   button {
+      border: none;
+      border-radius: 1rem;
+      padding: 1rem 3rem;
+
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: black;
+
+      background-color: white;
    }
 }
 

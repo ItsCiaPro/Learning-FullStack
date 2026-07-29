@@ -16,6 +16,9 @@
 
    <main>
       <section>
+         {{#if isOwner}}
+         <h1>Welcome Owner of Page</h1>
+         {{/if}}
          <h1>{{username}}</h1>
          <h2>{{email}}</h2>
          <h2>{{user_type}}</h2>

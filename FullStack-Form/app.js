@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const { url } = require("inspector");
 const hbs = require('hbs');
+const cookieParser = require('cookie-parser');
+const { checkUser } = require("./middleware/authMiddleware");
 
 //Hbs helpers
 hbs.registerPartials(path.join(__dirname, '/views/partials'))
@@ -17,6 +19,7 @@ const app = express();
 // Middleware for the reading of URL-encoded forms
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 //Declaration of public view directory for express
 const publicDirectory = path.join(__dirname, "/public");
@@ -24,12 +27,13 @@ app.use(express.static(publicDirectory));
 
 app.set('view engine', 'hbs');
 
+app.use(checkUser);
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 app.use('/home', require('./routes/home'));
 
 app.use((req, res) => {
-    res.status(404).send('<h1>Error 404</h1>');
+   res.status(404).send('<h1>Error 404</h1>');
 });
 
 //Port definition

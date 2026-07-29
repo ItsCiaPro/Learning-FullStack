@@ -1,9 +1,30 @@
-//Module use for connection an queries to the database
-const jwt = require('jsonwebtoken');
-//Module used to encrypt user passwords
-const bcrypt = require('bcryptjs');
 
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const cookie = require('cookie-parser');
 const db = require('../db.js');
+
+//Expiration period for JWT
+const maxJwtAge = 3 * 24 * 60 * 60;
+
+//Creates a JsonWebToken with user id
+const createToken = (id) => {
+
+   return jwt.sign({ id }, process.env.JWT_SECRET, {
+      expiresIn: maxJwtAge
+   });
+}
+
+
+
+exports.logout = async (req, res, next) => {
+   if (res.locals.isAuthenticated) {
+      res.clearCookie('jwt');
+   }
+
+   res.redirect('/');
+}
+
 
 
 //Register user function
@@ -54,6 +75,16 @@ exports.register = async (req, res) => {
       return res.redirect('/?error=database_error');
    }
 
+   //Queries user id for jwt creation
+   const get_user_query = `SELECT id FROM users WHERE email = '${form_info['email']}'`;
+   const get_user_result = await db.fetchQuery(get_user_query);
+
+   //Creates jwt token for client
+   const token = createToken(get_user_result['id']);
+   //Creates a cookie to be sent to the client with jwt
+   res.cookie('jwt', token, {httpOnly: true, maxAge: maxJwtAge * 1000});
+
+   //Redirects to user page
    return res.redirect(`/home/${form_info['username']}`)
 }
 
@@ -65,18 +96,23 @@ exports.login = async (req, res) => {
       'password': req.body["password"],
    };
 
-   const login_query = `SELECT name, email, password FROM users WHERE email = '${form_info['email']}'`;
+   const login_query = `SELECT id, name, email, password FROM users WHERE email = '${form_info['email']}'`;
    const login_result = await db.fetchQuery(login_query);
 
    if (login_result === null) {
-      return res.redirect('/?error=user_not_found');
+      return res.redirect('/?error=pass_or_email_incorrect');
    }
 
    const passMatch = await bcrypt.compare(form_info['password'], login_result['password']);
 
    if (!passMatch) {
-      return res.redirect('/?error=password_incorrect');
+      return res.redirect('/?error=pass_or_email_incorrect');
    }
+
+   //Creates jwt token for client
+   const token = createToken(login_result['id']);
+   //Creates a cookie to be sent to the client with jwt
+   res.cookie('jwt', token, {httpOnly: true, maxAge: maxJwtAge * 1000});
 
    const user_home_route = `/home/${login_result['name']}`
    res.redirect(user_home_route);
